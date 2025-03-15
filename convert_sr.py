@@ -1,0 +1,1 @@
+# Nhớ convert audio về sample_rate = 24000

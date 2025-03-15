@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# Thiết lập GPU sử dụng
+export CUDA_VISIBLE_DEVICES=0
+
+# Tạo thư mục cần thiết, bắt buộc phải có thư mục data/your_dataset chứa các file .wav, file .txt tương ứng
+DATASET_DIR="data/your_training_dataset"
+mkdir -p "$DATASET_DIR"
+
+# Định nghĩa các tham số huấn luyện
+EXP_NAME="F5TTS_Base"
+DATASET_NAME="your_training_dataset"
+BATCH_SIZE=1600
+NUM_WOKERS=8
+WARMUP_UPDATES=40000
+SAVE_UPDATES=10000
+LAST_UPDATES=10000
+PRETRAIN_CKPT="ckpts/your_training_dataset/extend_model_1200000.pt"
+
+# Tạo các biến stage để quản lý pipeline, bước nào đã chạy rồi thì không cần chạy lại
+stage=1
+stop_stage=5
+
+# Chuẩn bị dữ liệu audio_name và text tương ứng
+if [ $stage -le 1 ] && [ $stop_stage -ge 1 ]; then
+    log "Preparing metadata at: data/your_dataset ..."
+    python prepare_metadata.py
+fi
+
+# Bổ sung từ vựng trong bộ dữ liệu của bạn chưa có trong từ vựng của mô hình pretrained
+if [ $stage -le 2 ] && [ $stop_stage -ge 2 ]; then
+    log "Checking missing token in pretrained vocab ... "
+    python check_vocab_pretrained.py
+fi
+
+# Mở rộng embedding của mô hình pretrained để hỗ trợ bộ từ vựng mới
+if [ $stage -le 3 ] && [ $stop_stage -ge 3 ]; then
+    log "Extend embedding pretrained with new vocab ... "
+    python extend_embedding_pretrained.py
+fi
+
+# Trích xuất đặc trưng
+if [ $stage -le 4 ] && [ $stop_stage -ge 4 ]; then
+    log "Feature extraction ... "
+    python src/f5_tts/train/datasets/prepare_csv_wavs.py "$DATASET_DIR" "$DATASET_DIR" --workers "$NUM_WOKERS"
+fi
+
+# Chạy quá trình fine-tuning
+if [ $stage -le 5 ] && [ $stop_stage -ge 5 ]; then
+    log "Start fine-tuning F5-TTS with your dataset ... "
+    python src/f5_tts/train/finetune_cli.py \
+        --exp_name "$EXP_NAME" \
+        --dataset_name "$DATASET_NAME" \
+        --batch_size_per_gpu "$BATCH_SIZE" \
+        --num_warmup_updates "$WARMUP_UPDATES" \
+        --save_per_updates "$SAVE_UPDATES" \
+        --last_per_updates "$LAST_UPDATES" \
+        --pretrain "$PRETRAIN_CKPT"
+fi
+
+log "Fine-tuning F5-TTS done."
