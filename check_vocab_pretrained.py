@@ -11,7 +11,7 @@ DATASET_VOCAB_PATH = "data/your_training_dataset/vocab_your_dataset.txt"
 OUTPUT_VOCAB_PATH = "data/your_training_dataset/vocab.txt"
 
 
-def load_vocab(file_path: str) -> set:
+def load_vocab(file_path: str) -> list:
     """
     Đọc danh sách token từ file vocab.
 
@@ -19,25 +19,25 @@ def load_vocab(file_path: str) -> set:
         file_path (str): Đường dẫn đến file vocab.
 
     Returns:
-        set: Tập hợp các token trong file.
+        list: danh sách các token trong file.
     """
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"File không tồn tại: {file_path}")
 
     with open(file_path, "r", encoding="utf8") as file:
-        return {line.strip() for line in file}
+        return [line.replace("\n", "") for line in file]
 
 
-def save_vocab(file_path: str, vocab: set):
+def save_vocab(file_path: str, vocab: list):
     """
     Lưu danh sách token vào file vocab.
 
     Args:
         file_path (str): Đường dẫn file đầu ra.
-        vocab (set): Tập hợp token cần lưu.
+        vocab (list): Danh sách token cần lưu.
     """
     with open(file_path, "w", encoding="utf8") as file:
-        file.writelines(f"{token}\n" for token in sorted(vocab))
+        file.writelines(f"{token}\n" for token in vocab)
 
 
 def process_vocab():
@@ -49,12 +49,16 @@ def process_vocab():
     tokens_your_dataset = load_vocab(DATASET_VOCAB_PATH)
 
     # Tìm token trong dataset nhưng không có trong pretrained
-    tokens_missing = tokens_your_dataset - tokens_pretrained
+    tokens_missing = []
+
+    for token in tokens_your_dataset:
+        if token not in tokens_pretrained:
+            tokens_missing.append(token)
 
     print(f"Số token thiếu trong vocab pretrained: {len(tokens_missing)}")
 
     # Tạo vocab mới và lưu lại
-    new_vocab = tokens_pretrained | tokens_missing
+    new_vocab = tokens_pretrained + list(tokens_missing)
     save_vocab(OUTPUT_VOCAB_PATH, new_vocab)
 
     print(f"Vocab mới đã được lưu tại {OUTPUT_VOCAB_PATH}, tổng số token: {len(new_vocab)}")

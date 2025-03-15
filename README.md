@@ -27,6 +27,13 @@ conda activate f5-tts
 > pip install -e .
 > ```
 
+### Install sox, ffmpeg
+
+> ```bash
+> sudo apt-get update
+> sudo apt-get install sox ffmpeg
+> ```
+
 ## Fine-tuning pipline
 
 Steps:

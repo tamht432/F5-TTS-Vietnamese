@@ -87,7 +87,7 @@ if __name__ == "__main__":
 
     # Đường dẫn checkpoint
     ckpt_path = str(cached_path("hf://SWivid/F5-TTS/F5TTS_Base/model_1200000.pt"))
-    new_ckpt_path = "ckpts/your_training_dataset/extend_model_1200000.pt"
+    new_ckpt_path = "ckpts/your_training_dataset/pretrained_model_1200000.pt"
 
     # Mở rộng embedding
     expand_model_embeddings(ckpt_path, new_ckpt_path, num_new_tokens=vocab_size_new)

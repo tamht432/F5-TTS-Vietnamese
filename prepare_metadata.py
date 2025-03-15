@@ -63,7 +63,7 @@ def process_dataset():
                 continue
 
             # Ghi vào metadata.csv
-            fw.write(f"{wav_name}|{text}\n")
+            fw.write(f"wavs/{wav_name}|{text}\n")
 
             # Thu thập token cho vocab
             tokens.update(text)

@@ -1,7 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Thiết lập GPU sử dụng
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=-1 # 0 nếu như bạn có GPU của nvidia :v
+
+log() {
+    echo "$@"
+}
 
 # Tạo thư mục cần thiết, bắt buộc phải có thư mục data/your_dataset chứa các file .wav, file .txt tương ứng
 DATASET_DIR="data/your_training_dataset"
@@ -15,11 +19,17 @@ NUM_WOKERS=8
 WARMUP_UPDATES=40000
 SAVE_UPDATES=10000
 LAST_UPDATES=10000
-PRETRAIN_CKPT="ckpts/your_training_dataset/extend_model_1200000.pt"
+PRETRAIN_CKPT="ckpts/your_training_dataset/pretrained_model_1200000.pt"
 
 # Tạo các biến stage để quản lý pipeline, bước nào đã chạy rồi thì không cần chạy lại
-stage=1
+stage=5
 stop_stage=5
+
+# Chuẩn hoá sample_rate, bỏ qua stage này nếu audio của bạn đã ở định dạng 24Khz
+if [ $stage -le 0 ] && [ $stop_stage -ge 0 ]; then
+    log "Convert sample rate: data/your_dataset ..."
+    python convert_sr.py
+fi
 
 # Chuẩn bị dữ liệu audio_name và text tương ứng
 if [ $stage -le 1 ] && [ $stop_stage -ge 1 ]; then

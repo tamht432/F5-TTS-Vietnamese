@@ -11,6 +11,7 @@ fine_tuning.sh
 prepare_metadata.py
 pyproject.toml
 ruff.toml
+data/Emilia_ZH_EN_pinyin/vocab.txt
 src/f5_tts/api.py
 src/f5_tts/socket_client.py
 src/f5_tts/socket_server.py
