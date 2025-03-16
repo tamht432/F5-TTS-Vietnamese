@@ -163,8 +163,8 @@ def main():
 
     vocab_char_map, vocab_size = get_tokenizer(tokenizer_path, tokenizer)
 
-    print("\nvocab : ", vocab_size)
-    print("\nvocoder : ", mel_spec_type)
+    print("vocab : ", vocab_size)
+    print("vocoder : ", mel_spec_type)
 
     mel_spec_kwargs = dict(
         n_fft=n_fft,
