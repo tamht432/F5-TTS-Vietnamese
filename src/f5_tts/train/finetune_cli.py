@@ -149,6 +149,7 @@ def main():
         if not os.path.isfile(file_checkpoint):
             shutil.copy2(ckpt_path, file_checkpoint)
             print("copy checkpoint for finetune")
+        print("Pretrained checkpoint được sử dụng: " + file_checkpoint)
 
     # Use the tokenizer and tokenizer_path provided in the command line arguments
 
