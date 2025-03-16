@@ -41,6 +41,7 @@ Steps:
 - Prepare audio_name data and corresponding text
 - Add vocabulary from your dataset that is not present in the pretrained model's vocabulary
 - Expand the pretrained model's embedding to support the new vocabulary set
+- Feature extraction
 - Perform fine-tuning
 
 ```bash
