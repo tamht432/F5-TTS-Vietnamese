@@ -24,7 +24,7 @@ LAST_UPDATES=10000
 PRETRAIN_CKPT="ckpts/your_training_dataset/pretrained_model_1200000.pt"
 
 # Tạo các biến stage để quản lý pipeline, bước nào đã chạy rồi thì không cần chạy lại
-stage=1
+stage=5
 stop_stage=5
 
 # Chuẩn hoá sample_rate, bỏ qua stage này nếu audio của bạn đã ở định dạng 24Khz
@@ -67,6 +67,7 @@ if [ $stage -le 5 ] && [ $stop_stage -ge 5 ]; then
         --num_warmup_updates "$WARMUP_UPDATES" \
         --save_per_updates "$SAVE_UPDATES" \
         --last_per_updates "$LAST_UPDATES" \
+        --finetune \
         --pretrain "$PRETRAIN_CKPT"
 fi
 
