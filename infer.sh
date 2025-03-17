@@ -1,5 +1,5 @@
 f5-tts_infer-cli \
---model "F5-TTS" \
+--model "F5TTS_Base" \
 --ref_audio ref.wav \
 --ref_text "Kế hoạch là vậy nhưng cả Pháp lẫn Tây Ban Nha vẫn chưa xác định được nơi nào phù hợp để mở màn chiến dịch." \
 --gen_text "xin chào các bạn" \
