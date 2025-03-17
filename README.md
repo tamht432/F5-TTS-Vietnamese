@@ -49,5 +49,5 @@ bash fine-tuning.sh
 ### Inference
 
 ```bash
-bash fine-tuning.sh
+bash infer.sh
 ```
