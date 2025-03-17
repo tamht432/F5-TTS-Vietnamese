@@ -21,9 +21,7 @@ conda activate f5-tts
 ### Install f5-tts module:
 
 > ```bash
-> git clone https://github.com/SWivid/F5-TTS.git
-> cd F5-TTS
-> # git submodule update --init --recursive  # (optional, if need > bigvgan)
+> cd F5-TTS-Vietnamese
 > pip install -e .
 > ```
 
