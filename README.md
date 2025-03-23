@@ -1,9 +1,6 @@
 # F5-TTS-Vietnamese
 Fine-tuning pipline for training a Vietnamese speech synthesis model using the F5-TTS architecture.
 
-## 📽️ Video Demo
-![Demo](tests/demo.mp4)
-
 ## Installation
 
 ### Create a separate environment if needed
