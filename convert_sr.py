@@ -41,7 +41,7 @@ def process_audio_files(function, wav_paths):
     """
     Xử lý các file âm thanh với hàm được chỉ định sử dụng đa luồng.
     """
-    with Pool(processes=8) as pool:
+    with Pool(processes=16) as pool:
         list(tqdm(pool.imap(function, wav_paths), total=len(wav_paths)))
 
 

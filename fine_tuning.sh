@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Thiết lập GPU sử dụng
-export CUDA_VISIBLE_DEVICES=-1 # 0 nếu như bạn có GPU của nvidia :v
+export CUDA_VISIBLE_DEVICES=0 # 0 nếu như bạn có GPU của nvidia :v
 
 log() {
     echo "$@"
@@ -16,15 +16,15 @@ mkdir -p data/your_dataset
 # Định nghĩa các tham số huấn luyện
 EXP_NAME="F5TTS_Base"
 DATASET_NAME="your_training_dataset"
-BATCH_SIZE=1600
-NUM_WOKERS=8
-WARMUP_UPDATES=40000
+BATCH_SIZE=3200
+NUM_WOKERS=16
+WARMUP_UPDATES=20000
 SAVE_UPDATES=10000
 LAST_UPDATES=10000
 PRETRAIN_CKPT="ckpts/your_training_dataset/pretrained_model_1200000.pt"
 
 # Tạo các biến stage để quản lý pipeline, bước nào đã chạy rồi thì không cần chạy lại
-stage=5
+stage=1
 stop_stage=5
 
 # Chuẩn hoá sample_rate, bỏ qua stage này nếu audio của bạn đã ở định dạng 24Khz
@@ -68,6 +68,7 @@ if [ $stage -le 5 ] && [ $stop_stage -ge 5 ]; then
         --save_per_updates "$SAVE_UPDATES" \
         --last_per_updates "$LAST_UPDATES" \
         --finetune \
+        --log_samples \
         --pretrain "$PRETRAIN_CKPT"
 fi
 

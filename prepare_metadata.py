@@ -19,7 +19,6 @@ VOCAB_PATH = os.path.join(TRAINING_DIR, "vocab_your_dataset.txt")
 # Tạo thư mục đích nếu chưa tồn tại
 os.makedirs(WAVS_DIR, exist_ok=True)
 
-
 def get_audio_duration(wav_path: str) -> float:
     """
     Tính thời lượng của file audio.
@@ -50,12 +49,14 @@ def process_dataset():
             shutil.copy(wav_path, wav_dest_path)
 
             # Đọc nội dung text
-            txt_path = wav_path.replace(".wav", ".txt")
+            txt_path = wav_path.replace(".wav", ".lab")
             if not os.path.exists(txt_path):
                 continue
 
             with open(txt_path, "r", encoding="utf8") as fr:
                 text = fr.readline().strip().lower()
+                text = text.replace("_", " ")
+                text = " ".join(text.split())
 
             # Bỏ qua file không đạt yêu cầu
             duration = get_audio_duration(wav_path)
