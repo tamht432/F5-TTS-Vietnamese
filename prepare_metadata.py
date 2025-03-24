@@ -49,7 +49,7 @@ def process_dataset():
             shutil.copy(wav_path, wav_dest_path)
 
             # Đọc nội dung text
-            txt_path = wav_path.replace(".wav", ".lab")
+            txt_path = wav_path.replace(".wav", ".txt")
             if not os.path.exists(txt_path):
                 continue
 
