@@ -43,7 +43,7 @@ Steps:
 - Perform fine-tuning
 
 ```bash
-bash fine-tuning.sh
+bash fine_tuning.sh
 ```
 
 ### Inference
