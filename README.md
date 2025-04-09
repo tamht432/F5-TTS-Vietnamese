@@ -6,12 +6,12 @@ Fine-tuning pipline for training a Vietnamese speech synthesis model using the F
 Try demo at: https://huggingface.co/spaces/hynt/F5-TTS-Vietnamese-100h
 
 ## Tips for training
-- 100 hours of data is good enough for a Text-to-Speech model in Vietnamese with specific voices. However, to achieve optimal performance for voice cloning across diverse voices, I think more data is needed. I fine-tuned an F5-TTS version on a dataset of about 1000 hours, and the results were excellent for voice cloning.
-- It’s crucial to have a large number of speaker hours with highly accurate transcriptions - the more, the better. This allows other speaker sets to generalize well, leading to a lower WER after training and reducing hallucinations.
+- 100 hours of data is generally sufficient to train a Vietnamese Text-to-Speech model for specific voices. However, to achieve optimal performance in voice cloning across a wide range of speakers, a larger dataset is recommended. I fine-tuned an F5-TTS model on approximately 1000 hours of data, which resulted in excellent voice cloning performance.
+- Having a large amount of speaker hours with highly accurate transcriptions is crucial — the more, the better. This helps the model generalize better to unseen speakers, resulting in lower WER after training and reducing hallucinations.
 
 ## Tips for inference
-- Suggest selecting sample audios that are clear and have minimal interruptions, should less than 10s, as this will improve the synthesis results.
-- In cases where the reference audio text is not provided, the default model used will be whisper-large-v3-turbo. As a result, there may be instances where Vietnamese is not accurately recognized, leading to poor speech synthesis results.
+- It is recommended to select sample audios that are clear and have minimal interruptions, and should be less than 10 seconds long, as this will improve the synthesis results.
+- If the reference audio text is not provided, the default model used will be whisper-large-v3-turbo. Consequently, Vietnamese may not be accurately recognized in some cases, which can result in poor speech synthesis quality.
 
 ## Installation
 
