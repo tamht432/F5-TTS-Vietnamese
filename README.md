@@ -1,4 +1,6 @@
 # F5-TTS-Vietnamese
+![F5-TTS Architecture](tests/f5-tts.png)
+
 Fine-tuning pipline for training a Vietnamese speech synthesis model using the F5-TTS architecture.
 
 Try demo at: https://huggingface.co/spaces/hynt/F5-TTS-Vietnamese-100h
@@ -8,7 +10,7 @@ Try demo at: https://huggingface.co/spaces/hynt/F5-TTS-Vietnamese-100h
 - It’s crucial to have a large number of speaker hours with highly accurate transcriptions - the more, the better. This allows other speaker sets to generalize well, leading to a lower WER after training and reducing hallucinations.
 
 ## Tips for inference
-- Suggest selecting sample audios that are clear and have minimal interruptions, as this will improve the synthesis results.
+- Suggest selecting sample audios that are clear and have minimal interruptions, should less than 10s, as this will improve the synthesis results.
 - In cases where the reference audio text is not provided, the default model used will be whisper-large-v3-turbo. As a result, there may be instances where Vietnamese is not accurately recognized, leading to poor speech synthesis results.
 
 ## Installation
