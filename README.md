@@ -1,7 +1,7 @@
 # F5-TTS-Vietnamese
 ![F5-TTS Architecture](tests/f5-tts.png)
 
-Fine-tuning pipline for training a Vietnamese speech synthesis model using the F5-TTS architecture.
+A fine-tuning pipeline for training a Vietnamese speech synthesis model using the F5-TTS architecture.
 
 Try demo at: https://huggingface.co/spaces/hynt/F5-TTS-Vietnamese-100h
 
@@ -48,11 +48,11 @@ conda activate f5-tts
 
 Steps:
 
-- Prepare audio_name data and corresponding text
-- Add vocabulary from your dataset that is not present in the pretrained model's vocabulary
-- Expand the pretrained model's embedding to support the new vocabulary set
-- Feature extraction
-- Perform fine-tuning
+- Prepare `audio_name` and corresponding transcriptions  
+- Add missing vocabulary from your dataset to the pretrained model  
+- Expand the model's embedding to support the updated vocabulary  
+- Perform feature extraction  
+- Fine-tune the model
 
 ```bash
 bash fine_tuning.sh
