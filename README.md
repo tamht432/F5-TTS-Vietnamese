@@ -63,3 +63,7 @@ bash fine_tuning.sh
 ```bash
 bash infer.sh
 ```
+
+### References
+
+- Original F5-TTS repository: [https://github.com/SWivid/F5-TTS](https://github.com/SWivid/F5-TTS)
