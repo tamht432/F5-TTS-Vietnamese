@@ -12,6 +12,41 @@ Try demo at: https://huggingface.co/spaces/hynt/F5-TTS-Vietnamese-100h
 ## Tips for inference
 - It is recommended to select sample audios that are clear and have minimal interruptions, and should be less than 10 seconds long, as this will improve the synthesis results.
 - If the reference audio text is not provided, the default model used will be whisper-large-v3-turbo. Consequently, Vietnamese may not be accurately recognized in some cases, which can result in poor speech synthesis quality.
+- In case you want to synthesize speech from a long text paragraph, it is recommended to replace the chunks function (located in src\f5_tts\infer\utils_infer.py) with the modified chunk_text function below:
+
+def chunk_text(text, max_chars=135):
+    sentences = [s.strip() for s in text.split('. ') if s.strip()]
+    i = 0
+    while i < len(sentences):
+        if len(sentences[i].split()) < 4:
+            if i == 0:
+                # Merge with the next sentence
+                sentences[i + 1] = sentences[i] + ', ' + sentences[i + 1]
+                del sentences[i]
+            else:
+                # Merge with the previous sentence
+                sentences[i - 1] = sentences[i - 1] + ', ' + sentences[i]
+                del sentences[i]
+                i -= 1
+        else:
+            i += 1
+    final_sentences = []
+    for sentence in sentences:
+        parts = [p.strip() for p in sentence.split(', ')]
+        buffer = []
+        for part in parts:
+            buffer.append(part)
+            total_words = sum(len(p.split()) for p in buffer)
+            if total_words > 20:
+                long_part = ', '.join(buffer)
+                final_sentences.append(long_part)
+                buffer = []
+        if buffer:
+            final_sentences.append(', '.join(buffer))
+    if len(final_sentences[-1].split()) < 4 and len(final_sentences) >= 2:
+        final_sentences[-2] = final_sentences[-2] + ", " + final_sentences[-1]
+        final_sentences = final_sentences[0:-1]
+    return final_sentences
 
 ## Installation
 
