@@ -52,6 +52,7 @@ def chunk_text(text, max_chars=135):
         final_sentences = final_sentences[0:-1]
 
     return final_sentences
+```
 
 ## Installation
 
