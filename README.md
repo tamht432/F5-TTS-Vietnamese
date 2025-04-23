@@ -12,7 +12,7 @@ Try demo at: https://huggingface.co/spaces/hynt/F5-TTS-Vietnamese-100h
 ## Tips for inference
 - It is recommended to select sample audios that are clear and have minimal interruptions, and should be less than 10 seconds long, as this will improve the synthesis results.
 - If the reference audio text is not provided, the default model used will be whisper-large-v3-turbo. Consequently, Vietnamese may not be accurately recognized in some cases, which can result in poor speech synthesis quality.
-- In case you want to synthesize speech from a long text paragraph, it is recommended to replace the chunks function (located in *src/f5_tts/infer/utils_infer.py*) with the modified chunk_text function below:
+- In case you want to synthesize speech from a long text paragraph, it is recommended to replace the chunks function (located in **src/f5_tts/infer/utils_infer.py**) with the modified chunk_text function below:
 
 ```bash
 def chunk_text(text, max_chars=135):
