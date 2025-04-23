@@ -16,15 +16,15 @@ mkdir -p data/your_dataset
 # Định nghĩa các tham số huấn luyện
 EXP_NAME="F5TTS_Base"
 DATASET_NAME="your_training_dataset"
-BATCH_SIZE=4000
+BATCH_SIZE=7000
 NUM_WOKERS=16
 WARMUP_UPDATES=20000
 SAVE_UPDATES=10000
 LAST_UPDATES=10000
-PRETRAIN_CKPT="ckpts/your_training_dataset/pretrained_model_1200000.pt"
+PRETRAIN_CKPT="/mnt/d/ckpts/your_training_dataset/pretrained_model_1200000.pt"
 
 # Tạo các biến stage để quản lý pipeline, bước nào đã chạy rồi thì không cần chạy lại
-stage=0
+stage=5
 stop_stage=5
 
 # Chuẩn hoá sample_rate, bỏ qua stage này nếu audio của bạn đã ở định dạng 24Khz
@@ -71,7 +71,7 @@ if [ $stage -le 5 ] && [ $stop_stage -ge 5 ]; then
         --log_samples \
         --pretrain "$PRETRAIN_CKPT"
     ### Nếu bạn muốn training với nhiều gpu, sử dụng câu lệnh bên dưới:
-    # accelerate launch python src/f5_tts/train/finetune_cli.py \
+    # accelerate launch src/f5_tts/train/finetune_cli.py \
     #     --exp_name "$EXP_NAME" \
     #     --dataset_name "$DATASET_NAME" \
     #     --batch_size_per_gpu "$BATCH_SIZE" \
