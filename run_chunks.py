@@ -19,8 +19,8 @@ BUILTIN_TEMPLATES = {
         "ref_text": "chỉ cho mọi người một cách nói yêu mà không cần dùng chữ yêu, ừ thì tôi lỡ bước, lỡ bước vào mắt xanh"
     },
     "nhiii": {
-            "ref_audio": "/content/F5-TTS-Vietnamese/0124.WAV",
-        "ref_text": "và một muỗng canh tương ớt là 20 gam tương ớt, nấu mắm nêm mình nhớ cho thêm tương ớt vào, để cho vừa tạo độ sánh mà cái mắm nêm mình có cái vị ngon, tăng thêm cái vị ngon đó"
+        "ref_audio": "/content/F5-TTS-Vietnamese/0124.WAV",
+        "ref_text": "và một muỗng canh tương ớt là 20 gam tương ớt, nấu mắm nêm mình nhớ cho thêm tương ớt vào, để cho vừa tạo độ sánh mà cái mắm nêm mình [...]"
     }
 }
 
@@ -67,7 +67,7 @@ def main():
     if args.list_templates:
         print("Available templates:")
         for name, val in templates.items():
-            print(f"- {name}: ref_audio={{val.get('ref_audio')}}, ref_text={{val.get('ref_text')!r}}")
+            print(f"- {name}: ref_audio={val.get('ref_audio')}, ref_text={val.get('ref_text')!r}")
         return
 
     if not args.template:
@@ -109,15 +109,15 @@ def main():
     for chunk in chunks:
         chunk_id = chunk.get("id")
         script = chunk.get("script", "")
-        output_file = f"{{args.output_prefix}}{{chunk_id}}.wav"
+        output_file = f"{args.output_prefix}{chunk_id}.wav"
 
         cmd = base_cmd + ["--gen_text", script, "-w", output_file]
 
-        print(f"Running chunk {{chunk_id}} -> {{output_file}}")
+        print(f"Running chunk {chunk_id} -> {output_file}")
         try:
             subprocess.run(cmd, check=True)
         except subprocess.CalledProcessError as e:
-            print(f"Chunk {{chunk_id}} failed: {{e}}", file=sys.stderr)
+            print(f"Chunk {chunk_id} failed: {e}", file=sys.stderr)
             if not args.continue_on_error:
                 raise
             else:
