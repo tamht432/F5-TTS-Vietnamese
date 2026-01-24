@@ -14,13 +14,13 @@ BUILTIN_TEMPLATES = {
         "ref_audio": "/content/F5-TTS-Vietnamese/mien_nam.wav",
         "ref_text": "tâm tỉnh dậy trong dinh thự, nhìn xuống ao tôm mênh mông. nhưng giàu sang không mua được mạng sống."
     },
-    "mien_bac": {
-        "ref_audio": "/content/F5-TTS-Vietnamese/mien_bac.wav",
-        "ref_text": "sáng sớm tinh mơ, gió mùa thổi qua đồng lúa xanh mơn mởn."
+    "lieubachhop": {
+        "ref_audio": "/content/F5-TTS-Vietnamese/0119.WAV",
+        "ref_text": "chỉ cho mọi người một cách nói yêu mà không cần dùng chữ yêu, ừ thì tôi lỡ bước, lỡ bước vào mắt xanh"
     },
-    "formal": {
-        "ref_audio": "/content/F5-TTS-Vietnamese/formal_ref.wav",
-        "ref_text": "Xin chào, hôm nay chúng ta sẽ thảo luận về phương pháp học tập hiệu quả."
+    "nhiii": {
+            "ref_audio": "/content/F5-TTS-Vietnamese/0124.wav",
+        "ref_text": "và một muỗng canh tương ớt là 20 gam tương ớt, nấu mắm nêm mình nhớ cho thêm tương ớt vào, để cho vừa tạo độ sánh mà cái mắm nêm mình có cái vị ngon, tăng thêm cái vị ngon đó"
     }
 }
 
