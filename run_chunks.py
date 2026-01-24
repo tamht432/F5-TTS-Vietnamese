@@ -19,7 +19,7 @@ BUILTIN_TEMPLATES = {
         "ref_text": "chỉ cho mọi người một cách nói yêu mà không cần dùng chữ yêu, ừ thì tôi lỡ bước, lỡ bước vào mắt xanh"
     },
     "nhiii": {
-            "ref_audio": "/content/F5-TTS-Vietnamese/0124.wav",
+            "ref_audio": "/content/F5-TTS-Vietnamese/0124.WAV",
         "ref_text": "và một muỗng canh tương ớt là 20 gam tương ớt, nấu mắm nêm mình nhớ cho thêm tương ớt vào, để cho vừa tạo độ sánh mà cái mắm nêm mình có cái vị ngon, tăng thêm cái vị ngon đó"
     }
 }
