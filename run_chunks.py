@@ -22,7 +22,7 @@ BUILTIN_TEMPLATES = {
         "ref_audio": "/content/F5-TTS-Vietnamese/0124.WAV",
         "ref_text": "và một muỗng canh tương ớt là 20 gam tương ớt, nấu mắm nêm mình nhớ cho thêm tương ớt vào, để cho vừa tạo độ sánh mà cái mắm nêm mình [...]"
     },
-    "nhiii": {
+    "tho7mau": {
         "ref_audio": "/content/F5-TTS-Vietnamese/tho7mau.WAV",
         "ref_text": "anh nghĩ sao vậy? ba má anh nuôi anh ăn học đầy đủ, lớn lên cao gáo đẹp trai, hỏi ước mơ anh làm dì"
     }
