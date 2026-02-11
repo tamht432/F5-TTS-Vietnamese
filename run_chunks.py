@@ -25,6 +25,10 @@ BUILTIN_TEMPLATES = {
     "tho7mau": {
         "ref_audio": "/content/F5-TTS-Vietnamese/tho7mau.WAV",
         "ref_text": "anh nghĩ sao vậy? ba má anh nuôi anh ăn học đầy đủ, lớn lên cao gáo đẹp trai, hỏi ước mơ anh làm dì"
+    },
+     "mori": {
+        "ref_audio": "/content/F5-TTS-Vietnamese/mori.WAV",
+        "ref_text": "ngươi sắp thua tới nơi rồi đó nhóc à"
     }
 }
 
